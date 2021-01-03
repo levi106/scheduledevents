@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: scheduledevents
+
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: scheduledevents
+  namespace: scheduledevents
+spec:
+  selector:
+    matchLabels:
+      name: scheduledevents
+  template:
+    metadata:
+      labels:
+        name: scheduledevents
+    spec:
+      containers:
+      - name: scheduledevents
+        image: ghcr.io/levi106/scheduledevents:0.1.0
+        resources:
+          limits:
+            memory: 200Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
